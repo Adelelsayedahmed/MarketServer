@@ -34,6 +34,8 @@ public class MarketClient {
             response.close();
             client.close();
             
+            
+            
         } catch (UnknownHostException e) {
             e.printStackTrace();
             System.exit(1);
