@@ -3,19 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package marketserver;
-import java.util.Hashtable;
 
 /**
  *
  * @author tolan
  */
 public class Market {
-    public Hashtable<String, Integer> marketItems;
-    public Hashtable<String, Integer> itemsPrices;
+    private Item[] items;
 
-    public Market(Hashtable<String, Integer> marketItems, Hashtable<String, Integer> itemsPrices) {
-        this.marketItems = marketItems;
-        this.itemsPrices = itemsPrices;
+    public Item[] getItems() {
+        return items;
     }
-    
+
+    public void setItems(Item[] items) {
+        this.items = items;
+    }    
 }

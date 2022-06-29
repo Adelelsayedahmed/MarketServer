@@ -9,10 +9,8 @@ package marketserver;
  * @author tolan
  */
 public class SessionInfo {
+    public String response;
     public UsrData Usrdata;
     public Market marketData;
-    // Market data
-    // wallet data
-    // user purchase history
     
 }

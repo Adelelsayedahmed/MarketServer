@@ -10,25 +10,12 @@ package marketserver;
  */
 import java.util.ArrayList;
 public class SessionDispatcher {
-    static ArrayList<String> activeSessions = new ArrayList<String>();
     
-    
-    public static void sendSessionInfo(String ip, UsrData userInfo){
-        activeSessions.add(ip);
+    public static SessionInfo getSessionInfo(UsrData userInfo){
         SessionInfo sessionData = new SessionInfo();
         sessionData.Usrdata = userInfo;
         sessionData.marketData = MarketManager.getMarket();
-        // add walletInfo and marketInfo
-        // send session info to client throught sockets
+        sessionData.response = "success";
+        return sessionData;
     }
-    
-    public static void sendSessionUpdate(Market market){ // also sent wallet for wallet updates
-        for(String ip : activeSessions){
-            // send session update to client through sockets
-        }
-    }
-    
-    
-    
-    
 }

@@ -10,16 +10,17 @@ package marketserver;
  */
 public class RequestHandler {
     
-    public static String loginRequest(String username, String password, String ip){
+    public static SessionInfo loginRequest(String email, String password){
         //Send request to database
-        UsrData info = new UsrData(); // Recieved from database
+        UsrData info = DBManager.getUser(email, password); // Recieved from database
         
         if(info.getResponse() == "success"){
-            SessionDispatcher.sendSessionInfo(ip, info);
-            return info.getResponse();
+            SessionInfo session = SessionDispatcher.getSessionInfo(info);
+            return session;
         } else {
-            // Send login status to Client
-            return info.getResponse();
+            SessionInfo session = new SessionInfo();
+            session.Usrdata.setResponse("failed");
+            return session;
         }
     }
     

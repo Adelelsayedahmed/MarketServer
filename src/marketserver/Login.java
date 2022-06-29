@@ -10,33 +10,20 @@ import java.io.*;
  * @author tolan
  */
 public class Login implements Serializable {
-    private String ipAddress;
-    private String userName;
+    private String email;
     private String password;
-    
-    private String response;
-    private String loginStatus;
 
-    public Login(String ipAddress, String userName, String password) {
-        this.ipAddress = ipAddress;
-        this.userName = userName;
+    public Login(String email, String password) {
+        this.email = email;
         this.password = password;
     }
 
-    public String getIpAddress() {
-        return ipAddress;
+    public String getEmail() {
+        return email;
     }
 
-    public void setClientaddress(String clientaddress) {
-        this.ipAddress = clientaddress;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -46,27 +33,8 @@ public class Login implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public String getResponse() {
-        return response;
-    }
-
-    public void setResponse(String response) {
-        this.response = response;
-    }
-
-    public String getLoginStatus() {
-        return loginStatus;
-    }
-
-    public void setLoginStatus(String loginStatus) {
-        this.loginStatus = loginStatus;
-    }
     
-    //public void login(){
-      //  this.loginStatus = RequestHandler.loginRequest(this.userName, this.password, this.ipAddress);
-        // status is sent to client
-    //}
-    
-    
+    public SessionInfo login(){
+        return RequestHandler.loginRequest(this.email, this.password);
+    }
 }

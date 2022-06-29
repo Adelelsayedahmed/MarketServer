@@ -3,13 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package marketserver;
-import java.io.*;
 
 /**
  *
  * @author tolan
  */
-public class Register implements Serializable{
+public class Register {
     String firstName;
     String lastName;
     String password;

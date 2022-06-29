@@ -10,35 +10,18 @@ package marketserver;
  */
 public class UsrData {
     
-    private int id;
-    private String userName;
+    private String email;
     private String password;
     private String address;
     private String phoneNumber;
     private String response;
 
-    public String getResponse() {
-        return response;
+    public String getEmail() {
+        return email;
     }
 
-    public void setResponse(String response) {
-        this.response = response;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -64,6 +47,15 @@ public class UsrData {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public String getResponse() {
+        return response;
+    }
+
+    public void setResponse(String response) {
+        this.response = response;
+    }
+    
     
     
     

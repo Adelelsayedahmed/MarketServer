@@ -9,24 +9,13 @@ package marketserver;
  * @author tolan
  */
 public class Wallet {
-    String client;
-    int balance;
+    public static int balance;
 
-    public String getClient() {
-        return client;
-    }
-
-    public void setClient(String client) {
-        this.client = client;
-    }
-
-    public int getBalance() {
+    public static int getBalance() {
         return balance;
     }
-
-    public void setBalance(int balance) {
-        this.balance = balance;
+    
+    public static void deposit(int amount){
+        balance += amount;
     }
-    
-    
 }

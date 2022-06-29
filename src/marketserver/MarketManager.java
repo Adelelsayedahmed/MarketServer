@@ -19,24 +19,22 @@ public class MarketManager {
     public static Market getMarket() {
         return market;
     }
-
-    public static void setMarket(Market m) {
-        market = m;
-    }
     
     public void getMarketData(){
-        //gets data from database
+        market =  DBManager.getMarket();
     }
     
     // Get MarketData from database and set market   
-    public static void updateMarket(Hashtable<String, Integer> marketUpdates){
-        Enumeration<String> updatedkeys = marketUpdates.keys();
-        while (updatedkeys.hasMoreElements()) {
-            String key = updatedkeys.nextElement();
-            market.marketItems.replace(key, market.marketItems.get(key) - marketUpdates.get(key));
+    public static String updateMarket(Cart cart){
+        for(int i = 0; i <= 10; i++){
+            if(cart.items[i].getStock() > market.getItems()[i].getStock()){
+                return "failed";
+            }
+        }for(int i = 0; i <= 10; i++){
+            int stock = market.getItems()[i].getStock();
+            market.getItems()[i].setStock(stock - cart.items[0].getStock());
         }
-        //SessionDispatcher.sendSessionUpdate(market);
+        DBManager.setMarket(market);
+        return "success";
     }
-    
-    
 }
