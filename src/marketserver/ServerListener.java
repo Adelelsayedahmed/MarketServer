@@ -3,12 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package marketserver;
-import java.util.*;
 import java.io.*;
 import java.net.*;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 /**
  *
@@ -68,11 +64,13 @@ public class ServerListener {
                             out.flush();
                         }
                     }else if(requestType.equals("deposit")){
-                        Wallet.deposit((int) req.get("amount"));
+                        Deposit deposit = JSON.parseDeposit(req);
+                        Wallet.deposit(deposit.email, deposit.amount);
                     }else if(requestType.equals("logout")){
                         in.close();
                         out.close();
                         client.close();
+                        break;
                     }
                 }       
             }catch(Exception e){}

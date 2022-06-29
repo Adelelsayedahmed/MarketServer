@@ -8,9 +8,12 @@ package marketserver;
  *
  * @author tolan
  */
-public class Wallet {
-    
-    public static void deposit(String email, int amount){
-        DBManager.deposit(email, amount);
+public class Deposit {
+    int amount;
+    String email;
+
+    public Deposit(String email, int amount) {
+        this.amount = amount;
+        this.email = email;
     }
 }

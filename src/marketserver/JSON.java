@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package marketserver;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 /**
  *
@@ -50,7 +49,7 @@ public class JSON {
     
     public static Cart parseCart(JSONObject cartJSON){
         Item[] items = {new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item()};
-        for(int i = 0; i <= 10; i++){
+        for(int i = 1; i <= 10; i++){
             Item item = new Item();
             item.setId(i);
             item.setStock((int) cartJSON.get(i));
@@ -58,5 +57,7 @@ public class JSON {
         }
         return new Cart(items);
     }
-    
+    public static Deposit parseDeposit(JSONObject depositJSON){
+        return new Deposit((String) depositJSON.get("email"), (int) depositJSON.get("amount"));
+    }
 }

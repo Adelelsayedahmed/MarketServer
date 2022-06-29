@@ -26,4 +26,8 @@ public class DBManager {
     public static void setMarket(Market market){
         // update market values in db
     }
+    
+    public static void deposit(String email, int Amount){
+        // edit wallet data
+    }
 }
