@@ -2,20 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/home/tolan/NetBeansProjects/MarketServer/src/marketserver/Register.java</file>
-            <file>file:/home/tolan/NetBeansProjects/MarketServer/src/marketserver/Login.java</file>
-            <file>file:/home/tolan/NetBeansProjects/MarketServer/src/marketserver/MarketServer.java</file>
-            <file>file:/home/tolan/NetBeansProjects/MarketServer/src/marketserver/MarketManager.java</file>
-            <file>file:/home/tolan/NetBeansProjects/MarketServer/src/marketserver/SessionDispatcher.java</file>
-            <file>file:/home/tolan/NetBeansProjects/MarketServer/src/marketserver/Wallet.java</file>
-            <file>file:/home/tolan/NetBeansProjects/MarketServer/src/marketserver/SessionInfo.java</file>
-            <file>file:/home/tolan/NetBeansProjects/MarketServer/src/marketserver/RequestHandler.java</file>
-            <file>file:/home/tolan/NetBeansProjects/MarketServer/src/marketserver/Market.java</file>
-            <file>file:/home/tolan/NetBeansProjects/MarketServer/src/marketserver/ServerListener.java</file>
-            <file>file:/home/tolan/NetBeansProjects/MarketServer/src/marketserver/DBManager.java</file>
-            <file>file:/home/tolan/NetBeansProjects/MarketServer/src/marketserver/Cart.java</file>
-            <file>file:/home/tolan/NetBeansProjects/MarketServer/src/marketserver/Item.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

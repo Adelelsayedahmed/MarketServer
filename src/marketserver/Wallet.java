@@ -10,7 +10,7 @@ package marketserver;
  */
 public class Wallet {
     
-    public static void deposit(String email, int amount){
+    public static void deposit(String email, double amount){
         DBManager.deposit(email, amount);
     }
 }

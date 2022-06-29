@@ -10,12 +10,36 @@ package marketserver;
  */
 public class UsrData {
     
+    private String Fname;
+    private String Lname;
     private String email;
     private String password;
     private String address;
     private String phoneNumber;
     private String response;
+    private double balance;
 
+   
+    
+    
+    
+    
+    public String getFname() {
+        return Fname;
+    }
+
+    public void setFname(String Fname) {
+        this.Fname = Fname;
+    }
+
+    public String getLname() {
+        return Lname;
+    }
+
+    public void setLname(String Lname) {
+        this.Lname = Lname;
+    }
+    
     public String getEmail() {
         return email;
     }
@@ -57,6 +81,13 @@ public class UsrData {
     }
     
     
-    
+     public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
     
 }

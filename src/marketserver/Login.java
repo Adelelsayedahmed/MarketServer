@@ -33,8 +33,7 @@ public class Login implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    public SessionInfo login(){
-        return RequestHandler.loginRequest(this.email, this.password);
-    }
+        public SessionInfo login(){
+       return RequestHandler.loginRequest(this.email, this.password);
+   }
 }

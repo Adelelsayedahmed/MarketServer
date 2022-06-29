@@ -3,17 +3,99 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package marketserver;
-
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author tolan
  */
 public class DBManager {
     
+     static Connection con;
+    private static DBManager db;
+    
+    private DBManager(){
+        //Dummy
+    }
+    public static DBManager getInstance(){
+        if(db == null){
+            return new DBManager();
+        }else{
+            return db;
+        }
+    }
+    private static void createConnection(){
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/market", "root", "Omar1801246");
+           
+            //System.out.println("Successully Connected");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public static UsrData getUser(String email, String password){
         UsrData user = new UsrData();
-        // if email or password not found set UsrData.response to failed
-        // else set response to success and fill UsrData attributes
+        createConnection();
+         try {
+           
+            Statement st = con.createStatement();
+            ResultSet rs=st.executeQuery("select Email from clients where Email = '"+email+"'");
+            if(rs.next()){
+                rs = st.executeQuery("select Email,password from clients where Email = '"+email+"' and password = '"+password+"'");
+                
+                if(rs.next()){
+                    st.close();
+                   con.close();
+                   rs =st.executeQuery("select * from clients where Email = '"+email+"'");
+                 
+                String Fname = null;
+                String Lname = null;
+                String phNo = null;
+                String address = null;
+                Double balance = null;
+                
+                   while(rs.next()){
+                    Fname=rs.getString("Fname");
+                    Lname=rs.getString("Lname");
+                    phNo=rs.getString("Phone");
+                    balance = rs.getDouble("Balance");
+                    address = rs.getString("Address");
+                }
+                   user.setEmail(email);
+                   user.setPassword(password);
+                   user.setFname(Fname);
+                   user.setLname(Lname);
+                   user.setPhoneNumber(phNo);
+                   user.setAddress(address);
+                   user.setBalance(balance);
+                   user.setResponse("Login Successfully");
+                }
+                else{
+                    st.close();
+                    con.close();
+                    user.setResponse("Incorrect password");
+
+                }
+
+            }
+            else{
+                st.close();
+                con.close();
+                user.setResponse("Incorrect email");
+            }   
+     
+        
+        
+         }catch (SQLException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+  
         return user;
     } 
     
@@ -27,7 +109,19 @@ public class DBManager {
         // update market values in db
     }
     
-    public static void deposit(String email, int Amount){
-        // edit wallet data
+    public static void deposit(String email, double Amount){
+        createConnection();
+        try {
+            PreparedStatement st = con.prepareStatement("UPDATE clients SET  Balance = Balance + ?"
+                    + " WHERE email = ?;");
+           
+            st.setDouble(1,Amount);
+            st.setString(2,email);
+            st.executeUpdate();
+            st.close();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
