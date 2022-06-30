@@ -41,27 +41,23 @@ public class ServerListener {
             try{
                 out = new ObjectOutputStream(client.getOutputStream());
                 in = new ObjectInputStream(client.getInputStream());
-                
-                JSONObject req = (JSONObject) in.readObject();
-                String requestType = (String) req.get("requestType");
-                while((req = (JSONObject) in.readObject()) != null){
+                while(true){
+                    JSONObject req = (JSONObject) in.readObject();
+                    String requestType = (String) req.get("requestType");
                     if(requestType.equals("login")){
                         Login login = JSON.parseLogin(req);
                         SessionInfo response = login.login();
                         out.writeObject(JSON.jsonifySessionInfo(response));
-                        out.flush();
                     }else if(requestType.equals("cart")){
                         Cart cart = JSON.parseCart(req);
                         if(MarketManager.updateMarket(cart) == "success"){
                             JSONObject response = JSON.jsonifyMarket(MarketManager.getMarket());
                             response.put("response", "success");
                             out.writeObject(response);
-                            out.flush();
                         }else{
                             JSONObject response = JSON.jsonifyMarket(MarketManager.getMarket());
                             response.put("response", "failed");
                             out.writeObject(response);
-                            out.flush();
                         }
                     }else if(requestType.equals("deposit")){
                         Deposit deposit = JSON.parseDeposit(req);

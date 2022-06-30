@@ -64,12 +64,12 @@ public class DBManager {
                    user.setPhoneNumber(phNo);
                    user.setAddress(address);
                    user.setBalance(balance);
-                   user.setResponse("Login Successfully");
+                   user.setResponse("success");
                 }
                 else{
                     st.close();
                     con.close();
-                    user.setResponse("Incorrect password");
+                    user.setResponse("failed");
 
                 }
 
@@ -77,7 +77,7 @@ public class DBManager {
             else{
                 st.close();
                 con.close();
-                user.setResponse("Incorrect email");
+                user.setResponse("failed");
             }   
      
         

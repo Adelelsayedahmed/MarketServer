@@ -8,14 +8,13 @@ package marketserver;
  *
  * @author tolan
  */
-import java.util.ArrayList;
 public class SessionDispatcher {
     
-    public static SessionInfo getSessionInfo(UsrData userInfo){
+    public static SessionInfo getSessionInfo(String email, String password){
         SessionInfo sessionData = new SessionInfo();
-        sessionData.Usrdata = userInfo;
+        sessionData.Usrdata = DBManager.getUser(email, password);
+        MarketManager.getMarketData();
         sessionData.marketData = MarketManager.getMarket();
-        sessionData.response = "success";
         return sessionData;
     }
 }

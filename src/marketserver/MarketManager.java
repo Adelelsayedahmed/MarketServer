@@ -14,14 +14,12 @@ import java.util.Enumeration;
 public class MarketManager {
     private static Market market;
     
-    // Get market data from database
-    
     public static Market getMarket() {
         return market;
     }
     
-    public void getMarketData(){
-        market =  DBManager.getMarket();
+    public static void getMarketData(){
+        market = DBManager.getMarket();
     }
     
     // Get MarketData from database and set market   
