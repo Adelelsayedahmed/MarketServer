@@ -17,7 +17,7 @@ public class Cart {
     }
     
     public double calculateTotal() {
-        int cost = 0;
+        double cost = 0;
         for(Item i : items){
             cost += i.getStock() * i.getPrice();
         }
