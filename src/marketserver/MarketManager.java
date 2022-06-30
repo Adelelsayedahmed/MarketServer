@@ -18,8 +18,8 @@ public class MarketManager {
         return market;
     }
     
-    public static void getMarketData(){
-        market = DBManager.getMarket();
+    public static Market getMarketData(){
+        return DBManager.getMarket();
     }
     
     // Get MarketData from database and set market   

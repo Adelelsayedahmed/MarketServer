@@ -14,7 +14,7 @@ public class SessionDispatcher {
         SessionInfo sessionData = new SessionInfo();
         sessionData.Usrdata = DBManager.getUser(email, password);
         MarketManager.getMarketData();
-        sessionData.marketData = MarketManager.getMarket();
+        sessionData.marketData = MarketManager.getMarketData();
         return sessionData;
     }
 }

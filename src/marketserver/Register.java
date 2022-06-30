@@ -64,4 +64,14 @@ public class Register {
     public void setAddress(String Address) {
         this.Address = Address;
     } 
+
+    public String getResponse() {
+        return response;
+    }
+
+    public void setResponse(String response) {
+        this.response = response;
+    }
+    
+    
 }

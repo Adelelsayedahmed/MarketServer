@@ -165,5 +165,17 @@ public class DBManager {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public static String addUser(Register register){
+        return "success";
+    }
+    
+    public static void editStock(Edit edit){
+    
+    }
+    
+    public static void editPrices(Edit edit){
+    
+    }
    
 }

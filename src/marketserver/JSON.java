@@ -17,28 +17,31 @@ public class JSON {
         j.put("password", info.Usrdata.getPassword());
         j.put("address", info.Usrdata.getAddress());
         j.put("phonenumber", info.Usrdata.getPhoneNumber());
+        j.put("fistname", info.Usrdata.getFname());
+        j.put("lastname", info.Usrdata.getLname());
         
-        for(Item item : info.marketData.getItems()){
-            JSONObject i = new JSONObject();
-            i.put("ItemID", item.getId());
-            i.put("ItemName", item.getName());
-            i.put("ItemQuantity", item.getStock());
-            i.put("ItemPrice", item.getPrice());
-            j.putAll(i);
+        for(int i = 1; i <= 8; i++){
+            JSONObject item = new JSONObject();
+            item.put("ItemID"+i, info.marketData.getItems()[i-1].getId());
+            item.put("ItemName"+i, info.marketData.getItems()[i-1].getName());
+            item.put("ItemQuantity"+i, info.marketData.getItems()[i-1].getStock());
+            item.put("ItemPrice"+i, info.marketData.getItems()[i-1].getPrice());
+            j.putAll(item);
         }      
         return j;
     }
     
+    
     public static JSONObject jsonifyMarket(Market market){
         JSONObject j = new JSONObject();
         j.put("responseType", "market");
-        for(Item item : market.getItems()){
-            JSONObject i = new JSONObject();
-            i.put("ItemID", item.getId());
-            i.put("ItemName", item.getName());
-            i.put("ItemQuantity", item.getStock());
-            i.put("ItemPrice", item.getPrice());
-            j.putAll(i);
+        for(int i = 1; i <= 8; i++){
+            JSONObject item = new JSONObject();
+            item.put("ItemID"+i, market.getItems()[i-1].getId());
+            item.put("ItemName"+i, market.getItems()[i-1].getName());
+            item.put("ItemQuantity"+i, market.getItems()[i-1].getStock());
+            item.put("ItemPrice"+i, market.getItems()[i-1].getPrice());
+            j.putAll(item);
         }      
         return j;
     }
@@ -49,7 +52,7 @@ public class JSON {
     
     public static Cart parseCart(JSONObject cartJSON){
         Item[] items = {new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item()};
-        for(int i = 1; i <= 10; i++){
+        for(int i = 1; i <= 8; i++){
             Item item = new Item();
             item.setId(i);
             item.setStock((int) cartJSON.get(i));
@@ -60,4 +63,37 @@ public class JSON {
     public static Deposit parseDeposit(JSONObject depositJSON){
         return new Deposit((String) depositJSON.get("email"), (int) depositJSON.get("amount"));
     }
+    
+    public static Register parseRegister(JSONObject registerJSON){
+        Register register = new Register();
+        register.setFirstName((String) registerJSON.get("firstname"));
+        register.setLastName((String) registerJSON.get("lastanme"));
+        register.setAddress((String) registerJSON.get("address"));
+        register.setPhoneNo((String) registerJSON.get("phoneno"));
+        register.setPassword((String) registerJSON.get("password"));
+        register.setEmail((String) registerJSON.get("email")); 
+        register.setResponse (DBManager.addUser(register));
+        return register;
+    }
+    
+    public static Edit parseEditPrices(JSONObject editPricesJSON){
+        Item[] items = {new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item()} ;
+        for(int i = 1; i <= 8; i++){
+            Item item = new Item();
+            item.setPrice((int) editPricesJSON.get(i));
+            items[i-1] = item;
+        }
+        return new Edit(items);
+    }
+    
+    public static Edit parseEditStock(JSONObject editStockJSON){
+        Item[] items = {new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item()} ;
+        for(int i = 1; i <= 8; i++){
+            Item item = new Item();
+            item.setStock((int) editStockJSON.get(i));
+            items[i-1] = item;
+        }
+        return new Edit(items);
+    }
+    
 }

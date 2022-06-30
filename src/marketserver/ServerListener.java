@@ -48,28 +48,47 @@ public class ServerListener {
                         Login login = JSON.parseLogin(req);
                         SessionInfo response = login.login();
                         out.writeObject(JSON.jsonifySessionInfo(response));
+                    }else if(requestType.equals("market")){
+                        JSONObject market = JSON.jsonifyMarket(MarketManager.getMarketData());
+                        out.writeObject(market);
                     }else if(requestType.equals("cart")){
                         Cart cart = JSON.parseCart(req);
                         if(MarketManager.updateMarket(cart) == "success"){
-                            JSONObject response = JSON.jsonifyMarket(MarketManager.getMarket());
+                            JSONObject response = JSON.jsonifyMarket(MarketManager.getMarketData());
                             response.put("response", "success");
                             out.writeObject(response);
                         }else{
-                            JSONObject response = JSON.jsonifyMarket(MarketManager.getMarket());
+                            JSONObject response = JSON.jsonifyMarket(MarketManager.getMarketData());
                             response.put("response", "failed");
                             out.writeObject(response);
                         }
                     }else if(requestType.equals("deposit")){
                         Deposit deposit = JSON.parseDeposit(req);
                         Wallet.deposit(deposit.email, deposit.amount);
+                    }else if(requestType.equals("register")){
+                        Register register = JSON.parseRegister(req);
+                        DBManager.addUser(register);
+                        JSONObject response = new JSONObject();
+                        response.put("response", register.getResponse());
+                        out.writeObject(response);
+                    }else if(requestType.equals("editprices")){
+                        Edit edit = JSON.parseEditPrices(req);
+                        DBManager.editPrices(edit);
+                    }else if(requestType.equals("editstock")){
+                        Edit edit = JSON.parseEditStock(req);
+                        DBManager.editStock(edit);
+                        
                     }else if(requestType.equals("logout")){
                         in.close();
                         out.close();
                         client.close();
                         break;
                     }
-                }       
+                    in.close();
+                    out.close();
+                    client.close();
+                }
             }catch(Exception e){}
-        }
     }
+}
 }
