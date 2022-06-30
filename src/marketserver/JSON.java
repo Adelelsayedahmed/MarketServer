@@ -51,7 +51,7 @@ public class JSON {
     }
     
     public static Cart parseCart(JSONObject cartJSON){
-        Item[] items = {new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item()};
+        Item[] items = {new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item()};
         for(int i = 1; i <= 8; i++){
             Item item = new Item();
             item.setId(i);

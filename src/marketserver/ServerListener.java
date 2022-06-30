@@ -54,7 +54,7 @@ public class ServerListener {
                     }else if(requestType.equals("cart")){
                         Cart cart = JSON.parseCart(req);
                         if(MarketManager.updateMarket(cart) == "success"){
-                            JSONObject response = JSON.jsonifyMarket(MarketManager.getMarketData());
+                            JSONObject response = JSON.jsonifyMarket(MarketManager.getMarketData()); 
                             response.put("response", "success");
                             out.writeObject(response);
                         }else{
