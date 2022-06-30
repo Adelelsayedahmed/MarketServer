@@ -13,18 +13,9 @@ import java.util.logging.Logger;
 public class DBManager {
     
      static Connection con;
-    private static DBManager db;
+  
     
-    private DBManager(){
-        //Dummy
-    }
-    public static DBManager getInstance(){
-        if(db == null){
-            return new DBManager();
-        }else{
-            return db;
-        }
-    }
+    
     private static void createConnection(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -101,12 +92,62 @@ public class DBManager {
     
     public static Market getMarket(){
         Market market = new Market();
-        // set market attributes using db values
+        Item[] items = new Item[10];
+         createConnection();
+         int i=0;
+            try {
+           
+                Statement st = con.createStatement();
+                ResultSet rs=st.executeQuery("select * from item");
+                int id = 0;
+                String name = null;
+                double price = 0;
+                int stock = 0;
+                while(rs.next()){
+                    id=rs.getInt("itemID");
+                    name=rs.getString("itemName");
+                    price = rs.getDouble("price");
+                    stock=rs.getInt("quantity");
+                    Item item = new Item();
+                    item.setId(id);
+                    item.setName(name);
+                    item.setPrice(price);
+                    item.setStock(stock);
+                 if(i<10){
+                   items[i] = item;
+                 }
+                    
+                    i++;
+                }
+                market.setItems(items);
+                st.close();
+               con.close();
+            }catch (SQLException ex) {
+                Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
         return market;
     }
     
     public static void setMarket(Market market){
         // update market values in db
+        Item[] items = market.getItems();
+        
+        for(int i=0;i<10;i++){
+         createConnection();
+        try {
+           PreparedStatement st = con.prepareStatement("UPDATE item SET itemID = ? ,itemName = ? , price = ? , quantity = ? ;");
+           
+            st.setInt(1,items[i].getId());
+            st.setString(2,items[i].getName());
+            st.setDouble(3, items[i].getPrice());
+            st.setInt(4,items[i].getStock());
+            st.executeUpdate();
+            st.close();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     }
     
     public static void deposit(String email, double Amount){
@@ -124,4 +165,5 @@ public class DBManager {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+   
 }

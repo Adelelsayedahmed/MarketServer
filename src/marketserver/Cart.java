@@ -9,17 +9,17 @@ package marketserver;
  */
 public class Cart {
     Item[] items;
-    int totalCost;
+    double totalCost;
     
     public Cart(Item[] items){
         this.items = items;
         this.totalCost = calculateTotal();
     }
     
-    public int calculateTotal() {
+    public double calculateTotal() {
         int cost = 0;
         for(Item i : items){
-            cost += i.getStock() + i.getPrice();
+            cost += i.getStock() * i.getPrice();
         }
         return cost;
     }  

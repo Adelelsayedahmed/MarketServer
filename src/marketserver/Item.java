@@ -12,7 +12,7 @@ public class Item {
     String name;
     int id;
     int Stock;
-    int Price;
+    double Price;
 
     public String getName() {
         return name;
@@ -38,11 +38,11 @@ public class Item {
         this.Stock = Stock;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return Price;
     }
 
-    public void setPrice(int Price) {
+    public void setPrice(double Price) {
         this.Price = Price;
     }
     
