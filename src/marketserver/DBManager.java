@@ -40,8 +40,7 @@ public class DBManager {
                 rs = st.executeQuery("select Email,password from clients where Email = '"+email+"' and password = '"+password+"'");
                 
                 if(rs.next()){
-                    st.close();
-                   con.close();
+                   
                    rs =st.executeQuery("select * from clients where Email = '"+email+"'");
                  
                 String Fname = null;
@@ -65,6 +64,8 @@ public class DBManager {
                    user.setAddress(address);
                    user.setBalance(balance);
                    user.setResponse("success");
+                    st.close();
+                   con.close();
                 }
                 else{
                     st.close();
