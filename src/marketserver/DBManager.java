@@ -19,7 +19,7 @@ public class DBManager {
     private static void createConnection(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/market", "root", "Omar1801246");
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/market", "root", "Aa01030882089");
            
             //System.out.println("Successully Connected");
         } catch (ClassNotFoundException ex) {
@@ -92,7 +92,7 @@ public class DBManager {
     
     public static Market getMarket(){
         Market market = new Market();
-        Item[] items = new Item[10];
+        Item[] items = new Item[8];
          createConnection();
          int i=0;
             try {
@@ -113,7 +113,7 @@ public class DBManager {
                     item.setName(name);
                     item.setPrice(price);
                     item.setStock(stock);
-                 if(i<10){
+                 if(i<8){
                    items[i] = item;
                  }
                     
@@ -132,7 +132,7 @@ public class DBManager {
         // update market values in db
         Item[] items = market.getItems();
         
-        for(int i=0;i<10;i++){
+        for(int i=0;i<8;i++){
          createConnection();
         try {
            PreparedStatement st = con.prepareStatement("UPDATE item SET itemID = ? ,itemName = ? , price = ? , quantity = ? ;");
