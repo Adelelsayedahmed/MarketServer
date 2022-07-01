@@ -12,13 +12,14 @@ public class JSON {
     public static JSONObject jsonifySessionInfo(SessionInfo info){
         JSONObject j = new JSONObject();
         j.put("responseType", "sessionInfo");
-        j.put("reponse", info.Usrdata.getResponse());
+        j.put("response", info.Usrdata.getResponse());
         j.put("email", info.Usrdata.getEmail());
         j.put("password", info.Usrdata.getPassword());
         j.put("address", info.Usrdata.getAddress());
         j.put("phonenumber", info.Usrdata.getPhoneNumber());
-        j.put("fistname", info.Usrdata.getFname());
+        j.put("firstname", info.Usrdata.getFname());
         j.put("lastname", info.Usrdata.getLname());
+        j.put("balance", info.Usrdata.getBalance());
         
         for(int i = 1; i <= 8; i++){
             JSONObject item = new JSONObject();
@@ -51,14 +52,16 @@ public class JSON {
     }
     
     public static Cart parseCart(JSONObject cartJSON){
-        Item[] items = {new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item()};
+        System.out.println("parsing: " + cartJSON.toString());
+        Item[] items = new Item[8];
         for(int i = 1; i <= 8; i++){
             Item item = new Item();
             item.setId(i);
-            item.setStock((int) cartJSON.get(i));
-            items[i] = item;
+            item.setStock((int) cartJSON.get(i+""));
+            items[i-1] = item;
         }
-        return new Cart(items);
+        System.out.println("Done");
+        return new Cart(items, (String) cartJSON.get("email"));
     }
     public static Deposit parseDeposit(JSONObject depositJSON){
         return new Deposit((String) depositJSON.get("email"), (int) depositJSON.get("amount"));
@@ -72,7 +75,7 @@ public class JSON {
         register.setPhoneNo((String) registerJSON.get("phoneno"));
         register.setPassword((String) registerJSON.get("password"));
         register.setEmail((String) registerJSON.get("email")); 
-        register.setResponse (DBManager.addUser(register));
+        //register.setResponse (DBManager.addUser(register));
         return register;
     }
     

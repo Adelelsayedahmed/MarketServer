@@ -11,6 +11,13 @@ package marketserver;
 public class Market {
     private Item[] items;
 
+    public Market() {
+    }
+    
+    public Market(Item[] items) {
+        this.items = items;
+    }
+    
     public Item[] getItems() {
         return items;
     }

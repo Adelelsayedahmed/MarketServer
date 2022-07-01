@@ -12,22 +12,24 @@ import java.util.Enumeration;
  * @author tolan
  */
 public class MarketManager {
-    private static Market market;
-    
+    public static Market market;
+
     public static Market getMarketData(){
-        return DBManager.getMarket();
+        market = DBManager.getMarket();
+        return market;
     }
     
     // Get MarketData from database and set market   
     public static String updateMarket(Cart cart){
-        for(int i = 1; i <= 8; i++){
-            if(cart.items[i].getStock() > market.getItems()[i].getStock()){
+        for(int i = 0; i < 8; i++){
+            if(cart.items[i].getStock() > getMarketData().getItems()[i].getStock()){
                 return "failed";
             }
-        }for(int i = 1; i <= 8; i++){
+        }for(int i = 0; i < 8; i++){
             int stock = market.getItems()[i].getStock();
             market.getItems()[i].setStock(stock - cart.items[i].getStock());
         }
+        DBManager.deposit(cart.email, -cart.totalCost);
         DBManager.setMarket(market);
         return "success";
     }

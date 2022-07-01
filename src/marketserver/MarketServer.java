@@ -18,7 +18,7 @@ public class MarketServer {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        ServerListener.start(8888);
+        ServerListener.start(6969);
     }
     
 }

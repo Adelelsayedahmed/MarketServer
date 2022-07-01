@@ -44,17 +44,21 @@ public class ServerListener {
                 while(true){
                     JSONObject req = (JSONObject) in.readObject();
                     String requestType = (String) req.get("requestType");
+                    System.out.println(requestType);
+                    System.out.println(req.toString());
                     if(requestType.equals("login")){
                         Login login = JSON.parseLogin(req);
                         SessionInfo response = login.login();
                         out.writeObject(JSON.jsonifySessionInfo(response));
                     }else if(requestType.equals("market")){
                         JSONObject market = JSON.jsonifyMarket(MarketManager.getMarketData());
+                        System.out.println(market.toString());
                         out.writeObject(market);
                     }else if(requestType.equals("cart")){
                         Cart cart = JSON.parseCart(req);
-                        if(MarketManager.updateMarket(cart) == "success"){
-                            JSONObject response = JSON.jsonifyMarket(MarketManager.getMarketData()); 
+                        String res = MarketManager.updateMarket(cart);
+                        if(res.equals("success")){
+                            JSONObject response = JSON.jsonifyMarket(MarketManager.market); 
                             response.put("response", "success");
                             out.writeObject(response);
                         }else{
@@ -67,9 +71,11 @@ public class ServerListener {
                         Wallet.deposit(deposit.email, deposit.amount);
                     }else if(requestType.equals("register")){
                         Register register = JSON.parseRegister(req);
-                        DBManager.addUser(register);
+                        System.out.println(register.firstName+register.lastName+register.Address+register.password+register.phoneNo+register.email);
+                        //DBManager.addUser(register);
                         JSONObject response = new JSONObject();
-                        response.put("response", register.getResponse());
+                        //response.put("response", register.getResponse());
+                        response.put("response", "success");
                         out.writeObject(response);
                     }else if(requestType.equals("editprices")){
                         Edit edit = JSON.parseEditPrices(req);

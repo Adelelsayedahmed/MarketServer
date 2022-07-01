@@ -14,6 +14,19 @@ public class Item {
     int Stock;
     double Price;
 
+    public Item(String name, int id, int Stock, double Price) {
+        this.name = name;
+        this.id = id;
+        this.Stock = Stock;
+        this.Price = Price;
+    }
+
+    public Item() {
+    }
+    
+    
+
+    
     public String getName() {
         return name;
     }

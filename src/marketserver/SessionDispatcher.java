@@ -13,7 +13,6 @@ public class SessionDispatcher {
     public static SessionInfo getSessionInfo(String email, String password){
         SessionInfo sessionData = new SessionInfo();
         sessionData.Usrdata = DBManager.getUser(email, password);
-        MarketManager.getMarketData();
         sessionData.marketData = MarketManager.getMarketData();
         return sessionData;
     }
