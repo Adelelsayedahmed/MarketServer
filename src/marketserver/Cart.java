@@ -10,19 +10,9 @@ package marketserver;
 public class Cart {
     Item[] items;
     String email;
-    double totalCost;
     
     public Cart(Item[] items, String email){
         this.items = items;
         this.email = email;
-        this.totalCost = calculateTotal();
     }
-    
-    public double calculateTotal() {
-        double cost = 0;
-        for(Item i : items){
-            cost += i.getStock() * i.getPrice();
-        }
-        return cost;
-    }  
 }

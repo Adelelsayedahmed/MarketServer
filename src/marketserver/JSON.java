@@ -64,18 +64,18 @@ public class JSON {
         return new Cart(items, (String) cartJSON.get("email"));
     }
     public static Deposit parseDeposit(JSONObject depositJSON){
-        return new Deposit((String) depositJSON.get("email"), (int) depositJSON.get("amount"));
+        return new Deposit((String) depositJSON.get("email"), (double) depositJSON.get("amount"));
     }
     
     public static Register parseRegister(JSONObject registerJSON){
         Register register = new Register();
         register.setFirstName((String) registerJSON.get("firstname"));
-        register.setLastName((String) registerJSON.get("lastanme"));
+        register.setLastName((String) registerJSON.get("lastname"));
         register.setAddress((String) registerJSON.get("address"));
         register.setPhoneNo((String) registerJSON.get("phoneno"));
         register.setPassword((String) registerJSON.get("password"));
         register.setEmail((String) registerJSON.get("email")); 
-        //register.setResponse (DBManager.addUser(register));
+        register.setResponse (DBManager.addUser(register));
         return register;
     }
     

@@ -9,10 +9,10 @@ package marketserver;
  * @author tolan
  */
 public class Deposit {
-    int amount;
+    double amount;
     String email;
 
-    public Deposit(String email, int amount) {
+    public Deposit(String email, double amount) {
         this.amount = amount;
         this.email = email;
     }

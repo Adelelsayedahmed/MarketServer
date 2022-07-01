@@ -19,7 +19,7 @@ public class DBManager {
     private static void createConnection(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/market", "root", "Aa01030882089");
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/market", "root", "Omar1801246");
            
             //System.out.println("Successully Connected");
         } catch (ClassNotFoundException ex) {
@@ -37,7 +37,7 @@ public class DBManager {
             Statement st = con.createStatement();
             ResultSet rs=st.executeQuery("select Email from clients where Email = '"+email+"'");
             if(rs.next()){
-                rs = st.executeQuery("select Email,password from clients where Email = '"+email+"' and password = '"+password+"'");
+                rs = st.executeQuery("select Email,Pass from clients where Email = '"+email+"' and Pass = '"+password+"'");
                 
                 if(rs.next()){
                    
@@ -129,28 +129,6 @@ public class DBManager {
         return market;
     }
     
-    public static void setMarket(Market market){
-        // update market values in db
-        Item[] items = market.getItems();
-        
-        for(int i=0;i<8;i++){
-         createConnection();
-        try {
-           PreparedStatement st = con.prepareStatement("UPDATE item SET itemID = ? ,itemName = ? , price = ? , quantity = ? ;");
-           
-            st.setInt(1,items[i].getId());
-            st.setString(2,items[i].getName());
-            st.setDouble(3, items[i].getPrice());
-            st.setInt(4,items[i].getStock());
-            st.executeUpdate();
-            st.close();
-            con.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    }
-    
     public static void deposit(String email, double Amount){
         createConnection();
         try {
@@ -187,14 +165,15 @@ public class DBManager {
         return "success";
     }
     
-    public static void editStock(Edit edit){
-    Item[] items = edit.getItems();
+    public static void editStock(Market market){
+    Item[] items = market.getItems();
         
         for(int i=0;i<8;i++){
          createConnection();
         try {
-           PreparedStatement st = con.prepareStatement("UPDATE item SET quantity = ? ;");
+           PreparedStatement st = con.prepareStatement("UPDATE item SET quantity = ?  where itemID = ?;");
             st.setInt(1,items[i].getStock());
+            st.setInt(2,items[i].getId());
             st.executeUpdate();
             st.close();
             con.close();
@@ -210,8 +189,9 @@ public class DBManager {
         for(int i=0;i<8;i++){
          createConnection();
         try {
-           PreparedStatement st = con.prepareStatement("UPDATE item SET price = ? ;");
+           PreparedStatement st = con.prepareStatement("UPDATE item SET price = ? where itemID = ? ;");
             st.setDouble(1, items[i].getPrice());
+            st.setInt(2,items[i].getId());
             st.executeUpdate();
             st.close();
             con.close();

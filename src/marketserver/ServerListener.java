@@ -45,7 +45,7 @@ public class ServerListener {
                     JSONObject req = (JSONObject) in.readObject();
                     String requestType = (String) req.get("requestType");
                     System.out.println(requestType);
-                    System.out.println(req.toString());
+                    System.out.println(req.toJSONString());
                     if(requestType.equals("login")){
                         Login login = JSON.parseLogin(req);
                         SessionInfo response = login.login();
@@ -82,7 +82,7 @@ public class ServerListener {
                         DBManager.editPrices(edit);
                     }else if(requestType.equals("editstock")){
                         Edit edit = JSON.parseEditStock(req);
-                        DBManager.editStock(edit);
+                        //DBManager.editStock(edit);
                         
                     }else if(requestType.equals("logout")){
                         in.close();
