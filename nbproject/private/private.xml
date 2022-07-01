@@ -2,19 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/home/tolan/MarketApp/src/marketserver/MarketManager.java</file>
-            <file>file:/home/tolan/MarketApp/src/marketserver/Cart.java</file>
-            <file>file:/home/tolan/MarketApp/src/marketserver/Register.java</file>
-            <file>file:/home/tolan/MarketApp/src/marketserver/Wallet.java</file>
-            <file>file:/home/tolan/MarketApp/src/marketserver/Login.java</file>
-            <file>file:/home/tolan/MarketApp/src/marketserver/Item.java</file>
-            <file>file:/home/tolan/MarketApp/src/marketserver/MarketServer.java</file>
-            <file>file:/home/tolan/MarketApp/src/marketserver/SessionDispatcher.java</file>
-            <file>file:/home/tolan/MarketApp/src/marketserver/Market.java</file>
-            <file>file:/home/tolan/MarketApp/src/marketserver/DBManager.java</file>
-            <file>file:/home/tolan/MarketApp/src/marketserver/JSON.java</file>
-            <file>file:/home/tolan/MarketApp/src/marketserver/ServerListener.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

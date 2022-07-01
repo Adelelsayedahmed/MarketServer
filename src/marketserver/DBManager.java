@@ -167,15 +167,57 @@ public class DBManager {
     }
     
     public static String addUser(Register register){
+        createConnection();
+        try {           
+            PreparedStatement st = con.prepareStatement("insert into clients values(?,?,?,?,?,?,?)");
+            st.setString(1,register.getEmail());
+            st.setString(2,register.getPassword());
+            st.setString(3,register.getFirstName());
+            st.setString(4,register.getLastName());
+            st.setString(5,register.getPhoneNo());
+            st.setDouble(6,0);
+            st.setString(7,register.getAddress());
+            st.execute();
+            st.close();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return "success";
     }
     
     public static void editStock(Edit edit){
-    
+    Item[] items = edit.getItems();
+        
+        for(int i=0;i<8;i++){
+         createConnection();
+        try {
+           PreparedStatement st = con.prepareStatement("UPDATE item SET quantity = ? ;");
+            st.setInt(1,items[i].getStock());
+            st.executeUpdate();
+            st.close();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     }
     
     public static void editPrices(Edit edit){
-    
+    Item[] items = edit.getItems();
+        
+        for(int i=0;i<8;i++){
+         createConnection();
+        try {
+           PreparedStatement st = con.prepareStatement("UPDATE item SET price = ? ;");
+            st.setDouble(1, items[i].getPrice());
+            st.executeUpdate();
+            st.close();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     }
    
 }
