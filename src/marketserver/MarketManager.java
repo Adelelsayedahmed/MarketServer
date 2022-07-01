@@ -34,6 +34,15 @@ public class MarketManager {
         }
         DBManager.deposit(cart.email, -cost);
         DBManager.editStock(market);
+        DBManager.addOrder(cart.email, cart.items);
         return "success";
+    }
+    
+    public static void editStock(Cart cart){
+        market = getMarketData();
+        for(int i = 0; i < 8; i++){
+            market.getItems()[i].setStock(cart.items[i].getStock());
+        }
+        DBManager.editStock(market);
     }
 }

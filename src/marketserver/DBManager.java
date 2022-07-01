@@ -4,6 +4,12 @@
  */
 package marketserver;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -200,5 +206,79 @@ public class DBManager {
         }
     }
     }
-   
+    public static void addOrder(String email,Item[] items){
+        
+        try {
+            // TODO add your handling code here:
+           for(int i=0;i<8;i++){
+               if(items[i].getStock() != 0){
+            createConnection();
+            PreparedStatement st = con.prepareStatement("insert into buy values(?,?,?,?)");
+            st.setString(1, email);
+            st.setDouble(2, items[i].getId());
+            LocalDateTime date = LocalDateTime.now();
+            String str = date.toString();
+            String strDate= "";
+            for(int j=0;j<str.length();j++){
+           if(j!=10 && j<19){
+              strDate += str.charAt(j);
+           }
+           if(j == 10){
+               strDate +=" ";
+           }
+            } 
+             st.setString(3, strDate);
+            date =  date.plusHours(2);
+             String s = date.toString();
+             String sDate = "";
+             for(int j=0;j<s.length();j++){
+           if(j!=10 && j<19){
+              sDate += sDate.charAt(j);
+           }
+           if(j == 10){
+               sDate +=" ";
+           }
+            } 
+              st.setString(4, sDate);
+            st.execute();
+            st.close();
+            con.close();
+               }
+           }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        
+         }
+    }
+    
+    public static ArrayList<UsrData> getUsers(){
+        createConnection();
+        ArrayList<UsrData> users = new ArrayList<UsrData>();
+        try {
+           
+                Statement st = con.createStatement();
+                ResultSet rs=st.executeQuery("select * from clients");
+                String email = null;
+                String password = null;
+                String Fname = null;
+                String Lname = null;
+                String phNo = null;
+                String address = null;
+                Double balance = null;
+                while(rs.next()){
+                    email = rs.getString("Email");
+                    password = rs.getString("Pass");
+                    Fname=rs.getString("Fname");
+                    Lname=rs.getString("Lname");
+                    phNo=rs.getString("Phone");
+                    balance = rs.getDouble("Balance");
+                    address = rs.getString("Address");
+                    users.add(new UsrData(email,password,Fname,Lname,phNo,address,balance));
+                }
+               
+            }catch (SQLException ex) {
+                Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return users;
+    }
 }

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package marketserver;
+import java.util.ArrayList;
 import org.json.simple.JSONObject;
 /**
  *
@@ -31,7 +32,20 @@ public class JSON {
         }      
         return j;
     }
-    
+    public static JSONObject jsonifyUsers(ArrayList<UsrData> users){
+        JSONObject usersJSON = new JSONObject();
+        for(int i = 1; i <= users.size(); i++){
+            JSONObject user = new JSONObject();
+            user.put("email"+i, users.get(i-1).getEmail());
+            user.put("firstName"+i, users.get(i-1).getFname());
+            user.put("lastName"+i, users.get(i-1).getLname());
+            user.put("address"+i, users.get(i-1).getAddress());
+            user.put("phoneno"+i, users.get(i-1).getPhoneNumber());
+            user.put("balance"+i, users.get(i-1).getBalance());
+            usersJSON.putAll(user);
+        }
+        return usersJSON;
+    }
     
     public static JSONObject jsonifyMarket(Market market){
         JSONObject j = new JSONObject();
@@ -80,7 +94,7 @@ public class JSON {
     }
     
     public static Edit parseEditPrices(JSONObject editPricesJSON){
-        Item[] items = {new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item()} ;
+        Item[] items = new Item[8];
         for(int i = 1; i <= 8; i++){
             Item item = new Item();
             item.setPrice((int) editPricesJSON.get(i));

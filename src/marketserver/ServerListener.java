@@ -5,6 +5,7 @@
 package marketserver;
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 import org.json.simple.JSONObject;
 /**
  *
@@ -81,14 +82,12 @@ public class ServerListener {
                         Edit edit = JSON.parseEditPrices(req);
                         DBManager.editPrices(edit);
                     }else if(requestType.equals("editstock")){
-                        Edit edit = JSON.parseEditStock(req);
-                        //DBManager.editStock(edit);
+                        Cart editedStock = JSON.parseCart(req);
                         
-                    }else if(requestType.equals("logout")){
-                        in.close();
-                        out.close();
-                        client.close();
-                        break;
+                    }else if(requestType.equals("getusers")){
+                        ArrayList<UsrData> users = DBManager.getUsers();
+                        JSONObject usersData = JSON.jsonifyUsers(users);
+                        out.writeObject(usersData);
                     }
                     in.close();
                     out.close();

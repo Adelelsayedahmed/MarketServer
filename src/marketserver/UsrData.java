@@ -19,6 +19,20 @@ public class UsrData {
     private String response;
     private double balance;
 
+    public UsrData() {
+    }
+
+    public UsrData(String Fname, String Lname, String email, String password, String address, String phoneNumber,  double balance) {
+        this.Fname = Fname;
+        this.Lname = Lname;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.response = null;
+        this.balance = balance;
+    }
+
    
     
     
