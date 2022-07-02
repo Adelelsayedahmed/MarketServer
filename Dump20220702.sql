@@ -71,7 +71,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES ('adel@gmail.com','********','Adel','Elsayed','01120324907',650,'abdo basha'),('adelsayed@gmail.com','1234','adel','sayed','0109982788',49400,'Ain shams'),('ahmedsalah@gmail.com','1454','ahmed','salah','0109982338',500,'Beside stadium metro station');
+INSERT INTO `clients` VALUES ('adelsayed@gmail.com','1234','adel','sayed','0109982788',49400,'Ain shams');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,7 +98,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (1,'cucumber',20,0),(2,'tomatoes',10,7),(3,'onions',10,0),(4,'potatoes',10,28),(5,'mango',30,84),(6,'bananas',15,100),(7,'apples',10,99),(8,'orange',8,0);
+INSERT INTO `item` VALUES (1,'cucumber',20,0),(2,'tomatoes',10,0),(3,'onions',10,0),(4,'potatoes',10,28),(5,'mango',30,84),(6,'bananas',15,100),(7,'apples',10,99),(8,'orange',8,0);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -111,4 +111,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-02  5:18:40
+-- Dump completed on 2022-07-02  7:57:08
