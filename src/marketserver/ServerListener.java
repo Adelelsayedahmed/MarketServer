@@ -74,8 +74,8 @@ public class ServerListener {
                         Wallet.deposit(deposit.email, deposit.amount);
                     }else if(requestType.equals("register")){
                         Register register = JSON.parseRegister(req);
-                        DBManager.addUser(register);
                         JSONObject response = new JSONObject();
+                        response.put("response", register.response);
                         out.writeObject(response);
                     }else if(requestType.equals("editprices")){
                         Edit edit = JSON.parseEditPrices(req);

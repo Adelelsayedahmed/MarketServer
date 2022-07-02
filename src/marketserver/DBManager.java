@@ -151,7 +151,7 @@ public class DBManager {
         }
     }
     
-    public static String addUser(Register register){
+    public static synchronized String addUser(Register register){
         createConnection();
         try {           
             PreparedStatement st = con.prepareStatement("insert into clients values(?,?,?,?,?,?,?)");
@@ -167,11 +167,12 @@ public class DBManager {
             con.close();
         } catch (SQLException ex) {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+            return "failed";
         }
         return "success";
     }
     
-    public static void editStock(Market market){
+    public static synchronized void editStock(Market market){
     Item[] items = market.getItems();
         
         for(int i=0;i<8;i++){
@@ -189,7 +190,7 @@ public class DBManager {
     }
     }
     
-    public static void editPrices(Edit edit){
+    public static synchronized void editPrices(Edit edit){
     Item[] items = edit.getItems();
         
         for(int i=0;i<8;i++){
@@ -206,7 +207,7 @@ public class DBManager {
         }
     }
     }
-    public static void addOrder(String email,Item[] items,double totalCost){
+    public static synchronized void addOrder(String email,Item[] items,double totalCost){
         
         try {
             // TODO add your handling code here:
@@ -275,7 +276,7 @@ public class DBManager {
                     phNo=rs.getString("Phone");
                     balance = rs.getDouble("Balance");
                     address = rs.getString("Address");
-                    users.add(new UsrData(email,password,Fname,Lname,phNo,address,balance));
+                    users.add(new UsrData(Fname,Lname,email,password,address,phNo,balance));
                 }
                
             }catch (SQLException ex) {
@@ -284,14 +285,14 @@ public class DBManager {
         return users;
     }
     
-    public static void deleteUser(String email){
+    public static synchronized void deleteUser(String email){
         createConnection();
              try {
-           
-            Statement st = con.createStatement();
-            ResultSet rs=st.executeQuery("delete from clients where Email = '"+email+"'"); 
-                st.close();
-                con.close();
+           PreparedStatement st = con.prepareStatement("delete from clients where Email = ?;");
+            st.setString(1, email);
+            st.executeUpdate();
+            st.close();
+            con.close();
          }catch (SQLException ex) {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
         }

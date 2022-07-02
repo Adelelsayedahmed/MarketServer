@@ -46,6 +46,7 @@ public class JSON {
             usersJSON.putAll(user);
         }
         return usersJSON;
+        
     }
     
     public static JSONObject jsonifyMarket(Market market){
@@ -110,7 +111,7 @@ public class JSON {
         Item[] items = new Item[8];
         for(int i = 1; i <= 8; i++){
             Item item = new Item();
-            item.setPrice(Double.valueOf(editPricesJSON.get(i)+""));
+            item.setPrice(Double.valueOf(editPricesJSON.get(i+"")+""));
             items[i-1] = item;
         }
         return new Edit(items);
