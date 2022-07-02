@@ -34,6 +34,7 @@ public class JSON {
     }
     public static JSONObject jsonifyUsers(ArrayList<UsrData> users){
         JSONObject usersJSON = new JSONObject();
+        usersJSON.put("no", users.size()+"");
         for(int i = 1; i <= users.size(); i++){
             JSONObject user = new JSONObject();
             user.put("email"+i, users.get(i-1).getEmail());
@@ -59,6 +60,18 @@ public class JSON {
             j.putAll(item);
         }      
         return j;
+    }
+    
+    public static JSONObject jsonifyOrders(ArrayList<Order> orders){
+        JSONObject ordersJSON = new JSONObject();
+        ordersJSON.put("no", orders.size()+"");
+        for(int i = 1; i <= orders.size(); i++){
+            JSONObject order = new JSONObject();
+            order.put("date"+i, orders.get(i-1).dateOrdered);
+            order.put("cost"+i, orders.get(i-1).totalCost);
+            ordersJSON.putAll(order);
+        }
+        return ordersJSON;
     }
     
     public static Login parseLogin(JSONObject login){
@@ -97,7 +110,7 @@ public class JSON {
         Item[] items = new Item[8];
         for(int i = 1; i <= 8; i++){
             Item item = new Item();
-            item.setPrice((int) editPricesJSON.get(i));
+            item.setPrice(Double.valueOf(editPricesJSON.get(i)+""));
             items[i-1] = item;
         }
         return new Edit(items);
@@ -107,7 +120,7 @@ public class JSON {
         Item[] items = {new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item()} ;
         for(int i = 1; i <= 8; i++){
             Item item = new Item();
-            item.setStock((int) editStockJSON.get(i));
+            item.setStock(Integer.valueOf(editStockJSON.get(i)+""));
             items[i-1] = item;
         }
         return new Edit(items);

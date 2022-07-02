@@ -17,6 +17,8 @@ public class ServerListener {
     public static void start(int port){
         try{
             server = new ServerSocket(port);
+            System.out.println("Server is up on port "+port+".");
+            System.out.println("Ready to recieve client requests.");
             while(true){
                 new ClientHandler(server.accept()).start();
             }
@@ -72,22 +74,26 @@ public class ServerListener {
                         Wallet.deposit(deposit.email, deposit.amount);
                     }else if(requestType.equals("register")){
                         Register register = JSON.parseRegister(req);
-                        System.out.println(register.firstName+register.lastName+register.Address+register.password+register.phoneNo+register.email);
-                        //DBManager.addUser(register);
+                        DBManager.addUser(register);
                         JSONObject response = new JSONObject();
-                        //response.put("response", register.getResponse());
-                        response.put("response", "success");
                         out.writeObject(response);
                     }else if(requestType.equals("editprices")){
                         Edit edit = JSON.parseEditPrices(req);
                         DBManager.editPrices(edit);
                     }else if(requestType.equals("editstock")){
                         Cart editedStock = JSON.parseCart(req);
-                        
+                        Market market = new Market(editedStock.items);
+                        DBManager.editStock(market);
                     }else if(requestType.equals("getusers")){
                         ArrayList<UsrData> users = DBManager.getUsers();
                         JSONObject usersData = JSON.jsonifyUsers(users);
                         out.writeObject(usersData);
+                    }else if(requestType.equals("getorders")){
+                        ArrayList<Order> orders = DBManager.getOrders((String) req.get("email"));
+                        JSONObject ordersData = JSON.jsonifyOrders(orders);
+                        out.writeObject(ordersData);
+                    }else if(requestType.equals("deleteuser")){
+                        DBManager.deleteUser((String) req.get("email"));
                     }
                     in.close();
                     out.close();

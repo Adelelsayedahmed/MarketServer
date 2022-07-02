@@ -27,10 +27,11 @@ CREATE TABLE `buy` (
   `id` int NOT NULL,
   `datesub` varchar(45) NOT NULL,
   `deliveryDate` varchar(45) NOT NULL,
-  PRIMARY KEY (`email`,`id`),
+  `totalCost` double DEFAULT NULL,
+  PRIMARY KEY (`email`,`id`,`datesub`),
   KEY `id_idx` (`id`),
-  CONSTRAINT `email` FOREIGN KEY (`email`) REFERENCES `clients` (`Email`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `id` FOREIGN KEY (`id`) REFERENCES `item` (`itemID`) ON DELETE RESTRICT ON UPDATE CASCADE
+  CONSTRAINT `email` FOREIGN KEY (`email`) REFERENCES `clients` (`Email`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `id` FOREIGN KEY (`id`) REFERENCES `item` (`itemID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -40,6 +41,7 @@ CREATE TABLE `buy` (
 
 LOCK TABLES `buy` WRITE;
 /*!40000 ALTER TABLE `buy` DISABLE KEYS */;
+INSERT INTO `buy` VALUES ('adelsayed@gmail.com',2,'2022-07-02 02:40:56','2022-07-02 04:40:56',10),('adelsayed@gmail.com',3,'2022-07-02 01:07:36','2022-07-02 03:07:36',70),('adelsayed@gmail.com',4,'2022-07-02 01:50:13','2022-07-02 03:50:13',110),('adelsayed@gmail.com',4,'2022-07-02 03:20:27','2022-07-02 05:20:27',50),('adelsayed@gmail.com',5,'2022-07-02 01:07:36','2022-07-02 03:07:36',70),('adelsayed@gmail.com',5,'2022-07-02 01:07:58','2022-07-02 03:07:58',84),('adelsayed@gmail.com',5,'2022-07-02 01:50:13','2022-07-02 03:50:13',110),('adelsayed@gmail.com',5,'2022-07-02 01:50:25','2022-07-02 03:50:25',60),('adelsayed@gmail.com',8,'2022-07-02 01:07:58','2022-07-02 03:07:58',84);
 /*!40000 ALTER TABLE `buy` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -69,7 +71,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES ('adelsayed@gmail.com','1234','adel','sayed','0109982788',10000,'dsfa'),('ahmedsalah@gmail.com','1454','ahmed','salah','0109982338',10500,'eedfa');
+INSERT INTO `clients` VALUES ('adel@gmail.com','********','Adel','Elsayed','01120324907',650,'abdo basha'),('adelsayed@gmail.com','1234','adel','sayed','0109982788',49400,'Ain shams'),('ahmedsalah@gmail.com','1454','ahmed','salah','0109982338',500,'Beside stadium metro station');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +98,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (1,'cell phone',1000,10000),(2,'laptop',15000,10000),(3,'iphone',20000,2000),(4,'charger',100,2000),(5,'headphones',100,5000),(6,'wireless charger',500,5000),(7,'wireless headphones',700,5000),(8,'mouse',50,5000);
+INSERT INTO `item` VALUES (1,'cucumber',20,0),(2,'tomatoes',10,7),(3,'onions',10,0),(4,'potatoes',10,28),(5,'mango',30,84),(6,'bananas',15,100),(7,'apples',10,99),(8,'orange',8,0);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -109,4 +111,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-01  2:57:44
+-- Dump completed on 2022-07-02  5:18:40

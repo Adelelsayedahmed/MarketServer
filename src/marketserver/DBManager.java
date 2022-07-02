@@ -195,7 +195,7 @@ public class DBManager {
         for(int i=0;i<8;i++){
          createConnection();
         try {
-           PreparedStatement st = con.prepareStatement("UPDATE item SET price = ? where itemID = ? ;");
+           PreparedStatement st = con.prepareStatement("UPDATE item SET price = ? where itemID = ?;");
             st.setDouble(1, items[i].getPrice());
             st.setInt(2,items[i].getId());
             st.executeUpdate();
@@ -206,16 +206,10 @@ public class DBManager {
         }
     }
     }
-    public static void addOrder(String email,Item[] items){
+    public static void addOrder(String email,Item[] items,double totalCost){
         
         try {
             // TODO add your handling code here:
-           for(int i=0;i<8;i++){
-               if(items[i].getStock() != 0){
-            createConnection();
-            PreparedStatement st = con.prepareStatement("insert into buy values(?,?,?,?)");
-            st.setString(1, email);
-            st.setDouble(2, items[i].getId());
             LocalDateTime date = LocalDateTime.now();
             String str = date.toString();
             String strDate= "";
@@ -227,19 +221,27 @@ public class DBManager {
                strDate +=" ";
            }
             } 
-             st.setString(3, strDate);
+          
             date =  date.plusHours(2);
              String s = date.toString();
              String sDate = "";
              for(int j=0;j<s.length();j++){
            if(j!=10 && j<19){
-              sDate += sDate.charAt(j);
+              sDate += s.charAt(j);
            }
            if(j == 10){
                sDate +=" ";
            }
             } 
-              st.setString(4, sDate);
+           for(int i=0;i<8;i++){
+               if(items[i].getStock() != 0){
+            createConnection();
+            PreparedStatement st = con.prepareStatement("insert into buy values(?,?,?,?,?)");
+            st.setString(1, email);
+            st.setDouble(2, items[i].getId());
+            st.setString(3, strDate);
+            st.setString(4, sDate);
+            st.setDouble(5, totalCost);
             st.execute();
             st.close();
             con.close();
@@ -280,5 +282,40 @@ public class DBManager {
                 Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
             }
         return users;
+    }
+    
+    public static void deleteUser(String email){
+        createConnection();
+             try {
+           
+            Statement st = con.createStatement();
+            ResultSet rs=st.executeQuery("delete from clients where Email = '"+email+"'"); 
+                st.close();
+                con.close();
+         }catch (SQLException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    public static ArrayList<Order> getOrders(String email){
+        createConnection();
+        ArrayList<Order> orders = new ArrayList<Order>();
+             try {
+           
+            Statement st = con.createStatement();
+            ResultSet rs=st.executeQuery("select distinct datesub,totalCost from buy where Email = '"+email+"'"); 
+            String date = null;
+            double total = 0;
+            while(rs.next()){
+               date =rs.getString("datesub");
+               total = rs.getDouble("totalCost");
+               orders.add(new Order(date,total));
+            }
+                st.close();
+                con.close();
+         }catch (SQLException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+             return orders;
     }
 }

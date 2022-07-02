@@ -34,7 +34,7 @@ public class MarketManager {
         }
         DBManager.deposit(cart.email, -cost);
         DBManager.editStock(market);
-        DBManager.addOrder(cart.email, cart.items);
+        DBManager.addOrder(cart.email, cart.items, cost);
         return "success";
     }
     
