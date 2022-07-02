@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="615.0" prefWidth="409.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.guiclient.Edit_AddItemCartController">
+    <children>
+        <TextField fx:id="I1P" alignment="BASELINE_CENTER" layoutX="130.0" layoutY="281.0" prefHeight="26.0" prefWidth="75.0" />
+        <TextField fx:id="I2P" alignment="BASELINE_CENTER" layoutX="130.0" layoutY="312.0" prefHeight="26.0" prefWidth="75.0" />
+        <TextField fx:id="I3P" alignment="BASELINE_CENTER" layoutX="130.0" layoutY="350.0" prefHeight="26.0" prefWidth="75.0" />
+        <TextField fx:id="I1Q" alignment="BASELINE_CENTER" layoutX="227.0" layoutY="281.0" prefHeight="26.0" prefWidth="50.0" promptText="0" />
+        <TextField fx:id="I2Q" alignment="BASELINE_CENTER" layoutX="228.0" layoutY="312.0" prefHeight="26.0" prefWidth="50.0" promptText="0" />
+        <TextField fx:id="I3Q" alignment="BASELINE_CENTER" layoutX="228.0" layoutY="350.0" prefHeight="26.0" prefWidth="50.0" promptText="0" />
+        <Button layoutX="291.0" layoutY="281.0" mnemonicParsing="false" onAction="#handleButton0" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #63a9e1;" text="Add to cart" textFill="WHITE" />
+        <Button layoutX="293.0" layoutY="313.0" mnemonicParsing="false" onAction="#handleButton1" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #63a9e1;" text="Add to cart" textFill="WHITE" />
+        <Button layoutX="291.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleButton2" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #63a9e1;" text="Add to cart" textFill="WHITE" />
+        <Button layoutX="7.0" layoutY="60.0" mnemonicParsing="false" onAction="#SwitchToCart" prefHeight="20.0" prefWidth="75.0" style="-fx-background-color: #63a9e1;" text="Back" textFill="WHITE" />
+        <TextField fx:id="TBalance" alignment="BASELINE_CENTER" layoutX="315.0" layoutY="58.0" prefHeight="26.0" prefWidth="75.0">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="I4P" alignment="BASELINE_CENTER" layoutX="130.0" layoutY="386.0" prefHeight="26.0" prefWidth="75.0" />
+        <TextField fx:id="I5P" alignment="BASELINE_CENTER" layoutX="130.0" layoutY="423.0" prefHeight="26.0" prefWidth="75.0" />
+        <TextField fx:id="I6P" alignment="BASELINE_CENTER" layoutX="130.0" layoutY="461.0" prefHeight="26.0" prefWidth="75.0" />
+        <TextField fx:id="I4Q" alignment="BASELINE_CENTER" layoutX="228.0" layoutY="386.0" prefHeight="26.0" prefWidth="50.0" promptText="0" />
+        <TextField fx:id="I5Q" alignment="BASELINE_CENTER" layoutX="228.0" layoutY="423.0" prefHeight="26.0" prefWidth="50.0" promptText="0" />
+        <TextField fx:id="I6Q" alignment="BASELINE_CENTER" layoutX="227.0" layoutY="461.0" prefHeight="26.0" prefWidth="50.0" promptText="0" />
+        <Button layoutX="291.0" layoutY="386.0" mnemonicParsing="false" onAction="#handleButton3" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #63a9e1;" text="Add to cart" textFill="WHITE" />
+        <Button layoutX="291.0" layoutY="423.0" mnemonicParsing="false" onAction="#handleButton4" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #63a9e1;" text="Add to cart" textFill="WHITE" />
+        <Button layoutX="291.0" layoutY="461.0" mnemonicParsing="false" onAction="#handleButton5" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #63a9e1;" text="Add to cart" textFill="WHITE" />
+        <TextField fx:id="I7P" alignment="BASELINE_CENTER" layoutX="130.0" layoutY="495.0" prefHeight="26.0" prefWidth="75.0" />
+        <TextField fx:id="I8P" alignment="BASELINE_CENTER" layoutX="130.0" layoutY="535.0" prefHeight="26.0" prefWidth="75.0" />
+        <TextField fx:id="I7Q" alignment="BASELINE_CENTER" layoutX="228.0" layoutY="495.0" prefHeight="26.0" prefWidth="50.0" promptText="0" />
+        <TextField fx:id="I8Q" alignment="BASELINE_CENTER" layoutX="227.0" layoutY="535.0" prefHeight="26.0" prefWidth="50.0" promptText="0" />
+        <Button layoutX="291.0" layoutY="495.0" mnemonicParsing="false" onAction="#handleButton6" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #63a9e1;" text="Add to cart" textFill="WHITE" />
+        <Button layoutX="292.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleButton7" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #63a9e1;" text="Add to cart" textFill="WHITE" />
+        <TextField fx:id="TSearch" alignment="BASELINE_CENTER" layoutX="130.0" layoutY="133.0" prefHeight="30.0" prefWidth="150.0" promptText="Seach here" />
+        <Button layoutX="179.0" layoutY="180.0" mnemonicParsing="false" onAction="#search" style="-fx-background-color: #63a9e1;" text="Search" textFill="WHITE" />
+      <TextField fx:id="I1Name" alignment="BASELINE_CENTER" layoutX="7.0" layoutY="281.0" prefHeight="26.0" prefWidth="114.0" />
+      <TextField fx:id="I2Name" alignment="BASELINE_CENTER" layoutX="7.0" layoutY="312.0" prefHeight="26.0" prefWidth="114.0" />
+      <TextField fx:id="I3Name" alignment="BASELINE_CENTER" layoutX="7.0" layoutY="350.0" prefHeight="26.0" prefWidth="114.0" />
+      <TextField fx:id="I4Name" alignment="BASELINE_CENTER" layoutX="7.0" layoutY="386.0" prefHeight="26.0" prefWidth="114.0" />
+      <TextField fx:id="I5Name" alignment="BASELINE_CENTER" layoutX="7.0" layoutY="423.0" prefHeight="26.0" prefWidth="114.0" />
+      <TextField fx:id="I6Name" alignment="BASELINE_CENTER" layoutX="7.0" layoutY="461.0" prefHeight="26.0" prefWidth="114.0" />
+      <TextField fx:id="I7Name" alignment="BASELINE_CENTER" layoutX="7.0" layoutY="495.0" prefHeight="26.0" prefWidth="114.0" />
+      <TextField fx:id="I8Name" alignment="BASELINE_CENTER" layoutX="7.0" layoutY="535.0" prefHeight="26.0" prefWidth="114.0" />
+      <Text layoutX="293.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Balance" textAlignment="CENTER">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <BorderPane layoutY="102.0" prefHeight="4.0" prefWidth="410.0" style="-fx-background-color: black;" />
+      <Text layoutX="11.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adding new Item">
+         <font>
+            <Font name="Bauhaus 93" size="28.0" />
+         </font>
+      </Text>
+    </children>
+</AnchorPane>
