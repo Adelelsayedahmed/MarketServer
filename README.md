@@ -1,5 +1,5 @@
 # MarketApp
-It is Market application which based on client - server model written in java  
+It is Market application which based on client - server model written in java   
       The application supports the following features
 1) handling multiple client at the same time by using paralled programming (multiple threads) and solving synchronization error  
 2) Admin can change the price or add new quantity of what he needs which will be stored in database 
