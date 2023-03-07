@@ -1,5 +1,5 @@
-# MarketApp
-It is a Market application which based on client - server model with socket programmig written in java.   
+# Distribute online marketplace system.
+It is a Desktopapplication which based on client - server model with socket programmig written in java.   
 ## Main Application Features
 1) handling multiple client at the same time by using paralle programming (multiple threads) and solving synchronization problems.  
 2) Admin can change the price or add new quantity of what he needs which will be stored in database. 
