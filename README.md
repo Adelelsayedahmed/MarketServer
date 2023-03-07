@@ -1,4 +1,4 @@
-# Distribute online marketplace system.
+# Distributed online marketplace system.
 It is a Desktopapplication which based on client - server model with socket programmig written in java.   
 ## Main Application Features
 1) handling multiple client at the same time by using paralle programming (multiple threads) and solving synchronization problems.  
